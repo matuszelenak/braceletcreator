@@ -10,9 +10,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
+        Parent root = loader.load();
+        Controller controller = loader.getController();
+        BraceletModel model = new BraceletModel();
+        View view = new View();
+
+
+        controller.setModel(model);
+        controller.setView(view);
+        view.setModel(model);
+        primaryStage.setMinWidth(300);
+        primaryStage.setMinHeight(300);
+        primaryStage.setTitle("Bracelet Creator 1.0 alpha");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
